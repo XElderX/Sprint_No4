@@ -121,7 +121,9 @@ let displayStoragedItems = ()=>{
 }
 //count items in list
 function checkItemsCount () {
+    
      if (localStorage.getItem('itemsToShop') === null) {
+         
          return 0;
      }
      else {
