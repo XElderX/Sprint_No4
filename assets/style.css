@@ -1,0 +1,45 @@
+
+section{
+    height: 100vh;
+}
+.app-container {
+    background-color: #acce8f;
+    border: 5px solid #60061e;
+    border-radius: 30px;
+}
+input {
+    width: 80%;
+    
+    height: 5vh;
+    border: 5px solid #07444a;
+    border-radius: 30px;
+    
+}
+.logo-svg {
+    width:150px;
+}
+
+.added_tasks li {
+    display: flex;
+    justify-content: space-between;
+    border-top: 3px solid #636872;
+    padding: 10px 0px
+}
+
+
+
+h5{
+    float: right;
+    color: #90091e;
+}
+p{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #760014;
+}
+
+
+
+
+
+
