@@ -9,21 +9,23 @@ section{
 }
 input {
     width: 80%;
-    
-    height: 5vh;
+    height: 10vh;
     border: 5px solid #07444a;
     border-radius: 30px;
+    padding: 20px;
     
 }
+
+
 .logo-svg {
     width:150px;
 }
 
-.added_tasks li {
-    display: flex;
-    justify-content: space-between;
-    border-top: 3px solid #636872;
-    padding: 10px 0px
+.added-Items li {
+    border-top: 3px solid #072d7a;
+    padding: 10px 0px;
+    color: #525187;
+
 }
 
 

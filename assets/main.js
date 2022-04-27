@@ -25,9 +25,11 @@ button.parentNode.insertBefore(clearAllBtn,button.nextSibling)
 clearAllBtn.innerText = "Clear all List"
 clearAllBtn.classList.add('btn', 'btn-danger', 'm-3', 'btn-lg')
 clearAllBtn.style.display="none";
+const updateButton = document.querySelector('.editItem'); // update btn
+let tempStore
 
 //Events
-//add and store to local store
+//add and store to localstorage
 button.addEventListener("click", (e) =>{
     e.preventDefault();
     if(inputLine.value!=""){
@@ -47,6 +49,12 @@ button.addEventListener("click", (e) =>{
         linkDelete.style.color="red";
         linkDelete.style.float ="right";
         newItem.appendChild(linkDelete);
+        const edit = document.createElement("a"); // edit
+        edit.className = 'editIcon'; //edit
+        edit.innerHTML = '<i class="fa fa-pencil"></i>';
+        edit.style.float = 'right';
+        edit.style.marginRight="15px";
+        newItem.appendChild(edit);
         itemList.appendChild(newItem);
         inputLine.value = ""
         clearAllBtn.style.display="inline";
@@ -55,7 +63,8 @@ button.addEventListener("click", (e) =>{
         clearbtnDisplay();
 })
 
-// remove item from the list
+
+// remove item from the list and localStorage
 itemList.addEventListener('click', (e) => {
     e.preventDefault();
     if(e.target.parentElement.classList.contains('deleteIcon')) {
@@ -63,9 +72,9 @@ itemList.addEventListener('click', (e) => {
         e.target.parentElement.parentElement.remove()
         removeItemLocal(e.target.parentElement.parentElement)
         function removeItemLocal(itemDelete) {
-            console.log(itemDelete.textContent)
+            //console.log(itemDelete.textContent)
             let localStorageToRemove =JSON.parse(localStorage.getItem('itemsToShop'));
-            console.log(localStorageToRemove)
+            //console.log(localStorageToRemove)
             localStorageToRemove.forEach(function(
                 item){
                 if(itemDelete.textContent === item){
@@ -75,18 +84,53 @@ itemList.addEventListener('click', (e) => {
                 }  
             })
         };
-
     }
+
     itemsCount.innerText= checkItemsCount();
     clearbtnDisplay();
- 
 });
+
+
+// edit event 
+itemList.addEventListener('click', (e) => {
+    e.preventDefault();
+    if(e.target.parentElement.classList.contains('editIcon')){
+        button.style.display = 'none';
+        updateButton.style.display = 'inline';
+        clearAllBtn.style.display = 'none';
+        tempStore = e.target.parentElement.parentElement.textContent;
+        
+    
+        inputLine.value = e.target.parentElement.parentElement.textContent;
+    }  
+    });
+
+    updateButton.addEventListener('click', (e) => {
+        console.log(tempStore);
+        console.log(inputLine.value);
+        function updateItem(itemToUpdate,newItem) {
+            console.log("naujas: ",newItem)
+            let localStorageEdit =JSON.parse(localStorage.getItem('itemsToShop'));
+            console.log("senas",itemToUpdate)     
+            localStorageEdit.splice(localStorageEdit.indexOf(itemToUpdate), 1, newItem);
+            console.log(`ls ${localStorageEdit}`)
+            localStorage.setItem('itemsToShop', JSON.stringify(localStorageEdit));
+            while(itemList.firstChild){
+                itemList.removeChild(itemList.firstChild);
+            }
+        };
+        updateItem(tempStore, inputLine.value)
+        button.style.display = 'inline';
+        updateButton.style.display = 'none';
+        clearbtnDisplay();
+        displayStoragedItems();
+    })
+
 
 //remove all items 
 
 clearAllBtn.addEventListener('click',(e) => {
     e.preventDefault();
-    
     
     while(itemList.firstChild){
         itemList.removeChild(itemList.firstChild);
@@ -103,23 +147,29 @@ let displayStoragedItems = ()=>{
     let loadFromStorage = JSON.parse(localStorage.getItem("itemsToShop"));
     if(loadFromStorage != null){
         clearAllBtn.style.display="inline"
-        
+
         for(i=0; i<loadFromStorage.length; i++) {
             let newItem = document.createElement("li");
             newItem.appendChild(document.createTextNode(loadFromStorage[i]))
             itemList.appendChild(newItem); 
             const linkDelete = document.createElement("a");
-            linkDelete.className = 'deleteIcon';
+            linkDelete.className = 'deleteIcon';//delete
             linkDelete.innerHTML = '<i class="fa fa-trash-o"></i>'; 
             linkDelete.style.color="red";
             linkDelete.style.float ="right";
             newItem.appendChild(linkDelete);
+            const edit = document.createElement("a"); // edit
+            edit.className = 'editIcon'; //edit
+            edit.innerHTML = '<i class="fa fa-pencil"></i>';
+            edit.style.float = 'right';
+            edit.style.marginRight="15px";
+            newItem.appendChild(edit);
         };
         clearbtnDisplay();
         itemsCount.innerText=checkItemsCount();
     }
 }
-//count items in list
+
 function checkItemsCount () {
     
      if (localStorage.getItem('itemsToShop') === null) {
