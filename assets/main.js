@@ -26,7 +26,7 @@ clearAllBtn.innerText = "Clear all List"
 clearAllBtn.classList.add('btn', 'btn-danger', 'm-3', 'btn-lg')
 clearAllBtn.style.display="none";
 const updateButton = document.querySelector('.editItem'); // update btn
-let tempStore
+let tempStore  //variable for edit function
 
 //Events
 //add and store to localstorage
@@ -99,21 +99,16 @@ itemList.addEventListener('click', (e) => {
         updateButton.style.display = 'inline';
         clearAllBtn.style.display = 'none';
         tempStore = e.target.parentElement.parentElement.textContent;
-        
-    
         inputLine.value = e.target.parentElement.parentElement.textContent;
     }  
     });
-
+//update
     updateButton.addEventListener('click', (e) => {
         console.log(tempStore);
         console.log(inputLine.value);
         function updateItem(itemToUpdate,newItem) {
-            console.log("naujas: ",newItem)
-            let localStorageEdit =JSON.parse(localStorage.getItem('itemsToShop'));
-            console.log("senas",itemToUpdate)     
+            let localStorageEdit =JSON.parse(localStorage.getItem('itemsToShop'));  
             localStorageEdit.splice(localStorageEdit.indexOf(itemToUpdate), 1, newItem);
-            console.log(`ls ${localStorageEdit}`)
             localStorage.setItem('itemsToShop', JSON.stringify(localStorageEdit));
             while(itemList.firstChild){
                 itemList.removeChild(itemList.firstChild);
@@ -131,7 +126,7 @@ itemList.addEventListener('click', (e) => {
 
 clearAllBtn.addEventListener('click',(e) => {
     e.preventDefault();
-    
+
     while(itemList.firstChild){
         itemList.removeChild(itemList.firstChild);
     }

@@ -29,4 +29,4 @@ You can visit page <a href="https://xelderx.github.io/Sprint_No4/">Here</a>
 
 ##### Developer 
 
-This app was made by educational purpoises by Dalius Kriauciunas
+This app was made by educational purpoise by Dalius Kriauciunas
