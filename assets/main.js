@@ -104,8 +104,9 @@ itemList.addEventListener('click', (e) => {
     });
 //update
     updateButton.addEventListener('click', (e) => {
-        console.log(tempStore);
-        console.log(inputLine.value);
+        if(inputLine.value!=""){
+       /*  console.log(tempStore);
+        console.log(inputLine.value); */
         function updateItem(itemToUpdate,newItem) {
             let localStorageEdit =JSON.parse(localStorage.getItem('itemsToShop'));  
             localStorageEdit.splice(localStorageEdit.indexOf(itemToUpdate), 1, newItem);
@@ -114,11 +115,16 @@ itemList.addEventListener('click', (e) => {
                 itemList.removeChild(itemList.firstChild);
             }
         };
+        inputLine.value ="";
         updateItem(tempStore, inputLine.value)
         button.style.display = 'inline';
         updateButton.style.display = 'none';
         clearbtnDisplay();
         displayStoragedItems();
+    }
+    else{
+        alert("Please enter valid value")
+    }
     })
 
 

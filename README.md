@@ -17,14 +17,16 @@ Project description: make shopping list app. with these functionalities:
 
 ### Development Methods
 
-This project is being  developed by these steps:<br>
+This project was developed by these steps:<br>
 *Firstly, created HTML structure for the application.<br>
 *Styled using Bootstrap and raw CSS.<br>
 *Implemented functionalities with JavaScript;<br>
+*Tested and made fixes;
 
-#### launch procedure:
+#### Launch procedure:
 
 You can visit page <a href="https://xelderx.github.io/Sprint_No4/">Here</a>
+Also you can clone it if you want 
 
 
 ##### Developer 
