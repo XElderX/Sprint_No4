@@ -115,7 +115,6 @@ itemList.addEventListener('click', (e) => {
                 itemList.removeChild(itemList.firstChild);
             }
         };
-        inputLine.value ="";
         updateItem(tempStore, inputLine.value)
         button.style.display = 'inline';
         updateButton.style.display = 'none';
@@ -125,6 +124,7 @@ itemList.addEventListener('click', (e) => {
     else{
         alert("Please enter valid value")
     }
+    inputLine.value ="";
     })
 
 
