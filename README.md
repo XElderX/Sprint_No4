@@ -26,9 +26,19 @@ This project was developed by these steps:<br>
 #### Launch procedure:
 
 You can visit page <a href="https://xelderx.github.io/Sprint_No4/">Here</a>
-Also you can clone it if you want 
+Also you can clone it  if you want.
+
+##### How to use
+
+run app <br>
+Simple add your item you typed. pressing add item then.<br>
+You can edit. Press pencil icon.<br>
+You can delete. Press trash bin icon<br>
+you can clear all list.<br>
 
 
-##### Developer 
 
-This app was made by educational purpoise by Dalius Kriauciunas
+###### Developer 
+
+This app was made by educational purpoise by Dalius Kriauciunas<br>
+You can find me  <span><a href="https://www.linkedin.com/in/dalius-kriauciunas/">Link to Linked In </a></span>
