@@ -41,23 +41,32 @@ button.addEventListener("click", (e) =>{
         }
         let newItem = document.createElement("li");
         newItem.textContent = inputLine.value;
-        items.push(inputLine.value);//storage
-        localStorage.setItem('itemsToShop', JSON.stringify(items));//storage
-        const linkDelete = document.createElement("a");
-        linkDelete.className = 'deleteIcon';
-        linkDelete.innerHTML = '<i class="fa fa-trash-o"></i>'; 
-        linkDelete.style.color="red";
-        linkDelete.style.float ="right";
-        newItem.appendChild(linkDelete);
-        const edit = document.createElement("a"); // edit
-        edit.className = 'editIcon'; //edit
-        edit.innerHTML = '<i class="fa fa-pencil"></i>';
-        edit.style.float = 'right';
-        edit.style.marginRight="15px";
-        newItem.appendChild(edit);
-        itemList.appendChild(newItem);
-        inputLine.value = ""
-        clearAllBtn.style.display="inline";
+        
+        if(inputLine.value.length<90){
+            items.push(inputLine.value);//storage
+            localStorage.setItem('itemsToShop', JSON.stringify(items));//storage
+            const linkDelete = document.createElement("a");
+            linkDelete.className = 'deleteIcon';
+            linkDelete.innerHTML = '<i class="fa fa-trash-o"></i>'; 
+            linkDelete.style.color="red";
+            linkDelete.style.float ="right";
+            newItem.appendChild(linkDelete);
+            const edit = document.createElement("a"); // edit
+            edit.className = 'editIcon'; //edit
+            edit.innerHTML = '<i class="fa fa-pencil"></i>';
+            edit.style.float = 'right';
+            edit.style.marginRight="15px";
+            newItem.appendChild(edit);
+            itemList.appendChild(newItem);
+            inputLine.value = ""
+            clearAllBtn.style.display="inline";
+        }
+        else{
+            alert("Too much characters. Max 90 characters");
+            inputLine.value = ""
+
+        }
+       
     }
     itemsCount.innerText= checkItemsCount();
         clearbtnDisplay();
@@ -105,6 +114,7 @@ itemList.addEventListener('click', (e) => {
 //update
     updateButton.addEventListener('click', (e) => {
         if(inputLine.value!=""){
+            if(inputLine.value.length<90){
        /*  console.log(tempStore);
         console.log(inputLine.value); */
         function updateItem(itemToUpdate,newItem) {
@@ -122,9 +132,15 @@ itemList.addEventListener('click', (e) => {
         displayStoragedItems();
     }
     else{
+        alert("Too much characters. Max 90 characters");
+    }
+    }
+    else{
         alert("Please enter valid value")
     }
     inputLine.value ="";
+
+
     })
 
 
